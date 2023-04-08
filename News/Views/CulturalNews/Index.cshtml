@@ -1,0 +1,87 @@
+﻿@*@model IEnumerable<News.Models.CulturalNews>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+*@
+
+@model IEnumerable<News.Models.CulturalNews>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <h1 class="text-center text-danger">Index</h1>
+            <a class="btn btn-sm btn-danger m-1" asp-controller="CulturalNews" asp-action="Create">Create</a>
+            <p class="text-center text-danger">@TempData["error"]</p>
+            <table class="table table-bordered">
+                <tr class="text-info text-center">
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Email</th>
+                    
+                </tr>
+                @foreach (var d in Model)
+                {
+                    <tr class="text-center">
+                        <td>@d.Id</td>
+                        <td>@d.Name</td>
+                    <td>@d.Description</td>
+                        <td>@d.Email</td>
+                        <td>
+                            <a class="btn btn-sm btn-warning" asp-controller="CulturalNews" asp-action="Edit" asp-route-id="@d.Id">Edit</a>
+                            <a class="btn btn-sm btn-danger" asp-controller="CulturalNews" asp-action="Delete" asp-route-id="@d.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+
+

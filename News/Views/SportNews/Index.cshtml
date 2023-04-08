@@ -1,0 +1,38 @@
+﻿@model IEnumerable<News.Models.SportNews>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <h1 class="text-center text-danger">Index</h1>
+            <a class="btn btn-sm btn-danger m-1" asp-controller="SportNews" asp-action="Create">Create</a>
+            <p class="text-center text-danger">@TempData["error"]</p>
+            <table class="table table-bordered">
+                <tr class="text-info text-center">
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Email</th>
+
+                </tr>
+                @foreach (var d in Model)
+                {
+                    <tr class="text-center">
+                        <td>@d.Id</td>
+                        <td>@d.Name</td>
+                        <td>@d.Description</td>
+                        <td>@d.Email</td>
+                        <td>
+                            <a class="btn btn-sm btn-warning" asp-controller="SportNews" asp-action="Edit" asp-route-id="@d.Id">Edit</a>
+                            <a class="btn btn-sm btn-danger" asp-controller="SportNews" asp-action="Delete" asp-route-id="@d.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
